@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_page.ui'
+## Form generated from reading UI file 'main_frame.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -134,11 +134,3 @@ class Ui_MainWindow(object):
         self.disconnect_pushButton.setText(QCoreApplication.translate("MainWindow", u"DISCONNECT", None))
     # retranslateUi
 
-
-if __name__ == "__main__":
-    app = QApplication([])
-    login = QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(login)
-    login.show()
-    app.exec()

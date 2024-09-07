@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'login_page.ui'
+## Form generated from reading UI file 'login_frame.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -90,10 +90,3 @@ class Ui_login(object):
         self.pushButton.setText(QCoreApplication.translate("login", u"LOGIN", None))
     # retranslateUi
 
-if __name__ == "__main__":
-    app = QApplication([])
-    login = QMainWindow()
-    ui = Ui_login()
-    ui.setupUi(login)
-    login.show()
-    app.exec()
