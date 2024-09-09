@@ -1,10 +1,6 @@
 # import the Object class from the Pyside6
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject , Signal
 from view.login_view import LoginView
-from PySide6.QtCore import Signal
-
-
-from PySide6.QtCore import Signal  # Add this import statement
 
 class LoginController(QObject):
     login_success = Signal()

@@ -1,8 +1,8 @@
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject , Signal , Slot
 from controller.login_controller import LoginController
 from controller.home_controller import HomeController
 from view.login_view import LoginView
-from PySide6.QtCore import Signal, Slot
+from view.home_view import HomeView
 
 class CrashController(QObject):
     def __init__(self):
@@ -12,11 +12,16 @@ class CrashController(QObject):
         
         # binding signals
         self.login_controller.login_success.connect(self.loggin_success_event)
+        self.home_controller.log_out.connect(self.log_out_success_event)
 
     @Slot()
     def loggin_success_event(self):
         self.hide_login()
         self.show_home()
+    
+    def log_out_success_event(self):
+        self.hide_home()
+        self.show_login()
         
     def show_login(self):
         self.login_controller.login_obj.show_login()
