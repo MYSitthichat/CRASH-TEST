@@ -4,13 +4,17 @@ from view.login_view import LoginView
 
 class LoginController(QObject):
     login_success = Signal()
+    register_success = Signal()
     def __init__(self):
         super(LoginController, self).__init__()
         self.login_obj = LoginView()
         
         # add events handlers
-        self.login_obj.pushButton.clicked.connect(self.check_login)
+        self.login_obj.login_pushButton.clicked.connect(self.login_button_click)
+        self.login_obj.register_pushButton.clicked.connect(self.check_register)
 
-
-    def check_login(self):
+    def login_button_click(self):
         self.login_success.emit()
+        
+    def check_register(self):
+        self.register_success.emit()

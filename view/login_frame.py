@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'login_frame.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -40,7 +40,7 @@ class Ui_login(object):
         self.login_frame.setLineWidth(3)
         self.user_label = QLabel(self.login_frame)
         self.user_label.setObjectName(u"user_label")
-        self.user_label.setGeometry(QRect(220, 15, 61, 51))
+        self.user_label.setGeometry(QRect(220, 10, 61, 31))
         font = QFont()
         font.setFamilies([u"TH Niramit AS"])
         font.setPointSize(24)
@@ -48,7 +48,7 @@ class Ui_login(object):
         self.user_label.setFont(font)
         self.user_lineEdit = QLineEdit(self.login_frame)
         self.user_lineEdit.setObjectName(u"user_lineEdit")
-        self.user_lineEdit.setGeometry(QRect(90, 65, 321, 41))
+        self.user_lineEdit.setGeometry(QRect(90, 40, 321, 41))
         font1 = QFont()
         font1.setFamilies([u"TH Niramit AS"])
         font1.setPointSize(20)
@@ -58,20 +58,35 @@ class Ui_login(object):
         self.user_lineEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.password_label = QLabel(self.login_frame)
         self.password_label.setObjectName(u"password_label")
-        self.password_label.setGeometry(QRect(190, 110, 121, 51))
+        self.password_label.setGeometry(QRect(190, 80, 121, 51))
         self.password_label.setFont(font)
-        self.passwrod_lineEdit = QLineEdit(self.login_frame)
-        self.passwrod_lineEdit.setObjectName(u"passwrod_lineEdit")
-        self.passwrod_lineEdit.setGeometry(QRect(90, 165, 321, 41))
-        self.passwrod_lineEdit.setFont(font1)
-        self.passwrod_lineEdit.setStyleSheet(u"background:rgb(255, 255, 255)")
-        self.passwrod_lineEdit.setEchoMode(QLineEdit.EchoMode.Password)
-        self.passwrod_lineEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.pushButton = QPushButton(self.login_frame)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(160, 230, 181, 51))
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet(u"background:rgb(72, 216, 0)")
+        self.password_lineEdit = QLineEdit(self.login_frame)
+        self.password_lineEdit.setObjectName(u"password_lineEdit")
+        self.password_lineEdit.setGeometry(QRect(90, 120, 321, 41))
+        self.password_lineEdit.setFont(font1)
+        self.password_lineEdit.setStyleSheet(u"background:rgb(255, 255, 255)")
+        self.password_lineEdit.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_lineEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.login_pushButton = QPushButton(self.login_frame)
+        self.login_pushButton.setObjectName(u"login_pushButton")
+        self.login_pushButton.setGeometry(QRect(150, 170, 206, 51))
+        self.login_pushButton.setFont(font)
+        self.login_pushButton.setStyleSheet(u"background:rgb(20, 218, 33)\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.register_pushButton = QPushButton(self.login_frame)
+        self.register_pushButton.setObjectName(u"register_pushButton")
+        self.register_pushButton.setGeometry(QRect(180, 230, 151, 51))
+        self.register_pushButton.setFont(font)
+        self.register_pushButton.setStyleSheet(u"background:rgb(244, 244, 0)")
+        self.password_label.raise_()
+        self.user_label.raise_()
+        self.user_lineEdit.raise_()
+        self.password_lineEdit.raise_()
+        self.login_pushButton.raise_()
+        self.register_pushButton.raise_()
         login.setCentralWidget(self.login_main)
         self.statusbar = QStatusBar(login)
         self.statusbar.setObjectName(u"statusbar")
@@ -86,7 +101,8 @@ class Ui_login(object):
         login.setWindowTitle(QCoreApplication.translate("login", u"LOGIN", None))
         self.user_label.setText(QCoreApplication.translate("login", u"USER", None))
         self.password_label.setText(QCoreApplication.translate("login", u"PASSWORD", None))
-        self.passwrod_lineEdit.setInputMask("")
-        self.pushButton.setText(QCoreApplication.translate("login", u"LOGIN", None))
+        self.password_lineEdit.setInputMask("")
+        self.login_pushButton.setText(QCoreApplication.translate("login", u"LOGIN", None))
+        self.register_pushButton.setText(QCoreApplication.translate("login", u"Register", None))
     # retranslateUi
 

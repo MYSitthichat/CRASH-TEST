@@ -1,19 +1,54 @@
 import sqlite3
-conn = sqlite3.connect(r'DATABASS/1.db')
-print("เปิดฐานข้อมูลสำเร็จ")
-# conn.execute('''CREATE TABLE SAVEONE
+import os
+
+directory = "DATABASS"
+db_path = r'DATABASS/CT.db'
+
+try:
+      if not os.path.exists(directory):
+            os.makedirs(directory)
+            conn = sqlite3.connect(r'DATABASS/CT.db')
+            # print("Create Folder")
+            
+      if os.path.isfile(db_path):
+            # print("have File in folder")
+            pass
+      else:
+            # print("File not found in folder")
+            conn = sqlite3.connect(r'DATABASS/CT.db')
+except OSError:
+      print("Error Create Folder")
+            
+
+# print("เปิดฐานข้อมูลสำเร็จ")
+conn = sqlite3.connect(r'DATABASS/CT.db')
+# conn.execute('''CREATE TABLE USER_LOGIN
 #        (ID INT PRIMARY KEY     NOT NULL,
 #        NAME           TEXT    NOT NULL,
 #        LASTNAME       TEXT    NOT NULL,
-#        AGE            INT     NOT NULL,
-#        MESSENGE        CHAR(150));''')
+#        EMAIL          TEXT    NOT NULL,
+#        USERNAME       TEXT    NOT NULL,
+#        PASSWORD       TEXT    NOT NULL);''')
 # print("สร้างตารางสำเร็จ :D ")
 # conn.close() 
 
-conn.execute("INSERT INTO SAVEONE (ID,NAME,LASTNAME,AGE,MESSENGE ) \
-      VALUES (1, 'ต้นตาล','test','12','ทดสอบระบบ :D ')")
-conn.execute("INSERT INTO SAVEONE (ID,NAME,LASTNAME,AGE,MESSENGE ) \
-      VALUES (2, 'วรรณพงษ์','ddddd','222','ทดสอบระบบ ครับ  :D ')")
-conn.commit()
-print("เพิ่มระเบียงข้อมูลสำเร็จ")
-conn.close() 
+cursor = conn.cursor()
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='USER_LOGIN';")
+table_exists = cursor.fetchone()
+
+if table_exists:
+      print(table_exists)
+      print(" Have Table USER_LOGIN ")
+else:
+      print("Don't Have Table USER_LOGIN ")
+
+conn.close()
+
+
+# conn.execute("INSERT INTO SAVEONE (ID,NAME,LASTNAME,AGE,MESSENGE ) \
+#       VALUES (1, 'ต้นตาล','test','12','ทดสอบระบบ :D ')")
+# conn.execute("INSERT INTO SAVEONE (ID,NAME,LASTNAME,AGE,MESSENGE ) \
+#       VALUES (2, 'วรรณพงษ์','ddddd','222','ทดสอบระบบ ครับ  :D ')")
+# conn.commit()
+# print("เพิ่มระเบียงข้อมูลสำเร็จ")
+# conn.close() 

@@ -12,3 +12,7 @@ class LoginView(QMainWindow,Ui_login):
 
     def hide_login(self):
         self.hide()
+
+    def clear_login(self):
+        self.user_lineEdit.clear()
+        self.password_lineEdit.clear()
