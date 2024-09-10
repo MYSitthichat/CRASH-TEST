@@ -3,8 +3,8 @@ from view.register_view import RegisterView
 
 
 class RegisterController(QObject):
-    save_success = Signal()
-    cancle_register = Signal()
+    save_button = Signal()
+    cancle_button = Signal()
     def __init__(self):
         super(RegisterController, self).__init__()
         self.register_obj = RegisterView()
@@ -14,10 +14,10 @@ class RegisterController(QObject):
         self.register_obj.save_pushButton.clicked.connect(self.save_pushbutton)
 
     def cancle_pushbutton(self):
-        self.cancle_register.emit()
+        self.cancle_button.emit()
         
     def save_pushbutton(self):
-        self.save_success.emit()
+        self.save_button.emit()
         
     def show_register(self):
         self.register_obj.show_register()

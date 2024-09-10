@@ -67,5 +67,14 @@ class DatabassController:
         conn.close()
         return user
     
+
+    def check_user_by_username(self, username):
+        conn = sqlite3.connect(r'DATABASS/CT.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM USER_LOGIN WHERE USERNAME = ?", (username,))
+        user = cursor.fetchone()
+        conn.close()
+        return user
+    
     
 

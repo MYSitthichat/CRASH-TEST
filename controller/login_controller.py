@@ -3,8 +3,8 @@ from PySide6.QtCore import QObject , Signal
 from view.login_view import LoginView
 
 class LoginController(QObject):
-    login_success = Signal()
-    register_success = Signal()
+    login_button = Signal()
+    register_button = Signal()
     def __init__(self):
         super(LoginController, self).__init__()
         self.login_obj = LoginView()
@@ -14,7 +14,7 @@ class LoginController(QObject):
         self.login_obj.register_pushButton.clicked.connect(self.check_register)
 
     def login_button_click(self):
-        self.login_success.emit()
+        self.login_button.emit()
         
     def check_register(self):
-        self.register_success.emit()
+        self.register_button.emit()

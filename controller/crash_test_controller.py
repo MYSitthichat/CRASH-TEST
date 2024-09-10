@@ -8,7 +8,6 @@ from controller.databass_controller import DatabassController
 from PySide6.QtWidgets import QMessageBox
 
 
-
 class CrashController(QObject):
     def __init__(self):
         super(CrashController, self).__init__()
@@ -17,11 +16,11 @@ class CrashController(QObject):
         self.register_controller = RegisterController()
         self.databass_controller = DatabassController()
         self.databass_controller.create_databass()
-        self.login_controller.login_success.connect(self.loggin_success_event)
-        self.login_controller.register_success.connect(self.register_success_event)
-        self.register_controller.cancle_register.connect(self.cancel_register_event)
-        self.register_controller.save_success.connect(self.save_register_event)
-        self.home_controller.log_out.connect(self.log_out_success_event)
+        self.login_controller.login_button.connect(self.loggin_success_event)
+        self.login_controller.register_button.connect(self.register_success_event)
+        self.register_controller.cancle_button.connect(self.cancel_register_event)
+        self.register_controller.save_button.connect(self.save_register_event)
+        self.home_controller.log_out_button.connect(self.log_out_success_event)
 
 
     @Slot()
@@ -49,21 +48,39 @@ class CrashController(QObject):
         self.register_username = self.register_controller.register_obj.username_lineEdit.text()
         self.register_password = self.register_controller.register_obj.password_lineEdit.text()
         self.register_repassword = self.register_controller.register_obj.repassword_lineEdit.text()
-        if self.register_password != self.register_repassword:
+        if self.register_name != "" and self.register_lastname != "" and self.register_email != "" and self.register_username != "" and self.register_password != "" and self.register_repassword != "":
+            if self.register_password != self.register_repassword:
+                msg_box = QMessageBox()
+                msg_box.setIcon(QMessageBox.Warning)
+                msg_box.setText("Password is not same")
+                msg_box.setWindowTitle("Register Error")
+                msg_box.exec()
+            if self.register_username != self.databass_controller.check_user_by_username(self.register_username):
+                msg_box = QMessageBox()
+                msg_box.setIcon(QMessageBox.Warning)
+                msg_box.setText("Username นี้มีคนใช้แล้ว")
+                msg_box.setWindowTitle("Register Error")
+                msg_box.exec()
+            else:
+                self.databass_controller.add_user(self.register_name, self.register_lastname, self.register_email, self.register_username, self.register_password)
+                msg_box = QMessageBox()
+                msg_box.setIcon(QMessageBox.Information)
+                msg_box.setText("Register Success")
+                msg_box.setWindowTitle("SUCCESS")   
+                msg_box.exec()             
+                self.register_controller.register_obj.clear_register()
+                self.hide_register()
+                self.show_login()
+        else:
             msg_box = QMessageBox()
             msg_box.setIcon(QMessageBox.Warning)
-            msg_box.setText("Password is not same")
+            msg_box.setText("Please fill all information")
             msg_box.setWindowTitle("Register Error")
             msg_box.exec()
-        else:
-            self.databass_controller.add_user(self.register_name, self.register_lastname, self.register_email, self.register_username, self.register_password)
-            self.register_controller.register_obj.clear_register()
-            self.hide_register()
-            self.show_login()
-            print("Register Success")
-        
+            
     def log_out_success_event(self):
         self.hide_home()
+        self.home_controller.disconnect_button_pressed()
         self.show_login()
         
     def register_success_event(self):
