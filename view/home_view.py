@@ -21,7 +21,7 @@ class HomeView(QMainWindow, Ui_MainWindow):
         
     def set_enable_connect_button(self):
         self.connect_pushButton.setEnabled(True)
-        self.connect_pushButton.setStyleSheet("background:rgb(177, 255, 125)")
+        self.connect_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #aaff7f, stop: 1 #aaff7f);")
         
     def set_disable_connect_button(self):
         self.connect_pushButton.setEnabled(False)
@@ -29,7 +29,7 @@ class HomeView(QMainWindow, Ui_MainWindow):
         
     def set_enable_disconnect_button(self):
         self.disconnect_pushButton.setEnabled(True)
-        self.disconnect_pushButton.setStyleSheet("background:rgb(224, 255, 240);")
+        self.disconnect_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #aefeff, stop: 1 #aefeff);")
     
     def set_disable_disconnect_button(self):
         self.disconnect_pushButton.setEnabled(False)
@@ -44,7 +44,7 @@ class HomeView(QMainWindow, Ui_MainWindow):
         self.comport_comboBox.setStyleSheet("background-color: gray; color: white;")
         
     def set_enable_weight_lineedit(self):
-        self.weight_lineEdit.setEnabled(True)
+        self.weight_lineEdit.setEnabled(False)
         self.weight_lineEdit.setStyleSheet("background:rgb(255, 255, 255)")
         
     def set_disable_weight_lineedit(self):
@@ -53,7 +53,7 @@ class HomeView(QMainWindow, Ui_MainWindow):
         
     def set_enable_set_zero_button(self):
         self.set_zero_pushButton.setEnabled(True)
-        self.set_zero_pushButton.setStyleSheet("background:rgb(177, 255, 125)")
+        self.set_zero_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0000ff, stop: 1 #ffffff);")
     
     def set_disable_set_zero_button(self):
         self.set_zero_pushButton.setEnabled(False)
@@ -61,7 +61,7 @@ class HomeView(QMainWindow, Ui_MainWindow):
     
     def set_enable_start_button(self):
         self.start_pushButton.setEnabled(True)
-        self.start_pushButton.setStyleSheet("background:rgb(73, 213, 34)")
+        self.start_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #62c300, stop: 1 #ffffff);")
         
     def set_disable_start_button(self):
         self.start_pushButton.setEnabled(False)
@@ -69,7 +69,7 @@ class HomeView(QMainWindow, Ui_MainWindow):
         
     def set_enable_stop_button(self):
         self.stop_pushButton.setEnabled(True)
-        self.stop_pushButton.setStyleSheet("background:rgb(255, 63, 29)")
+        self.stop_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ff0000, stop: 1 #ffffff);")
         
     def set_disable_stop_button(self):
         self.stop_pushButton.setEnabled(False)
@@ -77,10 +77,11 @@ class HomeView(QMainWindow, Ui_MainWindow):
         
     def set_enable_save_button(self):
         self.save_pushButton.setEnabled(True)
-        self.save_pushButton.setStyleSheet("background:rgb(170, 255, 255)")
+        self.save_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #00ffff, stop: 1 #ffffff);")
     
     def set_disable_save_button(self):
         self.save_pushButton.setEnabled(False)
         self.save_pushButton.setStyleSheet("background-color: gray; color: white;")
         
-    
+    def clear_weight_lineedit(self):
+        self.weight_lineEdit.clear()

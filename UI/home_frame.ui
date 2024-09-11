@@ -120,7 +120,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(177, 255, 125)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #aaff7f, stop: 1 #aaff7f);</string>
     </property>
     <property name="text">
      <string>CONNECT</string>
@@ -206,17 +206,23 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(177, 255, 125)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #0000ff, stop: 1 #ffffff);</string>
     </property>
     <property name="text">
      <string>SET ZERO</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>300</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>100</number>
     </property>
    </widget>
    <widget class="QPushButton" name="start_pushButton">
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>90</y>
+      <y>100</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -229,7 +235,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(73, 213, 34)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #62c300, stop: 1 #ffffff);</string>
     </property>
     <property name="text">
      <string>START</string>
@@ -239,7 +245,7 @@
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>180</y>
+      <y>190</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -252,17 +258,38 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(255, 63, 29)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ff0000, stop: 1 #ffffff);</string>
     </property>
     <property name="text">
      <string>STOP</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="save_pushButton">
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>270</y>
+      <y>280</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -275,7 +302,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(170, 255, 255)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #00ffff, stop: 1 #ffffff);</string>
     </property>
     <property name="text">
      <string>SAVE</string>
@@ -298,7 +325,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(255, 255, 255)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #000000, stop: 1 #ffffff);</string>
     </property>
     <property name="text">
      <string>LOG OUT</string>
@@ -321,7 +348,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:rgb(224, 255, 240)</string>
+     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #aefeff, stop: 1 #aefeff);</string>
     </property>
     <property name="text">
      <string>DISCONNECT</string>
