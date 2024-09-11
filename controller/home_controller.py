@@ -1,4 +1,4 @@
-from PySide6.QtCore import QMetaMethod, QObject ,Signal ,Slot,QThread
+from PySide6.QtCore import QObject ,Signal ,Slot
 from PySide6.QtWidgets import QMessageBox
 from view.home_view import HomeView
 from controller.check_comport_controller import SerialPortChecker
@@ -36,17 +36,18 @@ class HomeController(QObject):
         
     def log_out_pressed(self):
         self.modbus_consuccess = False
-        self.read_loadcell_controller.stop()
+        if self.modbus_consuccess == True:
+            self.read_loadcell_controller.stop()
         self.log_out_button.emit()
         
     def port_updated(self, ports):
         if len(ports) == 0:
+            self.home_obj.comport_comboBox.setEnabled(False)
             self.home_obj.comport_comboBox.clear()
             self.home_obj.comport_comboBox.addItem("NONE")
-            return
-        
         else:
             self.home_obj.comport_comboBox.clear()
+            self.home_obj.comport_comboBox.setEnabled(True)
             for port in ports:
                 self.home_obj.comport_comboBox.addItem(port.device)
                 
@@ -80,8 +81,12 @@ class HomeController(QObject):
         self.home_obj.set_disable_start_button()
         self.home_obj.set_disable_stop_button()
         self.home_obj.set_disable_save_button()
-        self.read_loadcell_controller.stop()
-        self.modbus_consuccess = False   
+        self.home_obj.set_disable_calibrate_weight_lineedit()
+        self.home_obj.set_disable_calibrate_button()
+        if self.modbus_consuccess == True:
+            self.read_loadcell_controller.stop()
+            self.modbus_consuccess = False
+  
                 
     def connection_comport_success(self):
         if self.modbus_consuccess:
@@ -93,6 +98,8 @@ class HomeController(QObject):
             self.home_obj.set_enable_start_button()
             self.home_obj.set_enable_stop_button()
             self.home_obj.set_enable_save_button()
+            self.home_obj.set_enable_calibrate_weight_lineedit()
+            self.home_obj.set_enable_calibrate_button()
         else:
             msg_box = QMessageBox()
             msg_box.setIcon(QMessageBox.Critical)

@@ -15,14 +15,16 @@ class Readloadcell(QThread,QObject):
 
     def run(self):
         while self.running:
-            if self.client.is_socket_open():
-                read_loadcell_response = self.client.read_holding_registers(slave=1,address=10,count=1)
-                self.load_cell_value = read_loadcell_response.registers[0]
-                self.raw_data_loadcell.emit(self.load_cell_value)
-                # print(read_loadcell_response.registers[0])
-            else:
-                self.client.connect()
-            self.msleep(100)  
+            try:
+                if self.client.is_socket_open():
+                    read_loadcell_response = self.client.read_holding_registers(slave=1,address=10,count=1)
+                    self.load_cell_value = read_loadcell_response.registers[0]
+                    self.raw_data_loadcell.emit(self.load_cell_value)
+                else:
+                    self.client.connect()
+                self.msleep(100)  
+            except:
+                pass
             
     def stop(self):
         self.client.close()
