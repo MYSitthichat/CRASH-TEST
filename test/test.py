@@ -1,14 +1,9 @@
-# import sqlite3
-# import os
+import sqlite3
+import os
 
-
-
-
-
-
-# directory = "DATABASS"
-# db_path = r'DATABASS/CT.db'
-
+directory = "DATABASS"
+db_path = r'DATABASS/CT.db'
+conn = sqlite3.connect(r'DATABASS/CT.db')
 # try:
 #       if not os.path.exists(directory):
 #             os.makedirs(directory)
@@ -48,11 +43,8 @@
 #       print("Don't Have Table USER_LOGIN ")
 
 # conn.close()
-
-# conn.execute("INSERT INTO SAVEONE (ID,NAME,LASTNAME,AGE,MESSENGE ) \
-#       VALUES (1, 'ต้นตาล','test','12','ทดสอบระบบ :D ')")
-# conn.execute("INSERT INTO SAVEONE (ID,NAME,LASTNAME,AGE,MESSENGE ) \
-#       VALUES (2, 'วรรณพงษ์','ddddd','222','ทดสอบระบบ ครับ  :D ')")
-# conn.commit()
-# print("เพิ่มระเบียงข้อมูลสำเร็จ")
-# conn.close() 
+cursor = conn.cursor()
+cursor.execute("INSERT INTO USER_LOGIN (ID, NAME, LASTNAME, EMAIL, USERNAME, PASSWORD) VALUES (1, ?, ?, ?, ?, ?)", ("name", "lastname", "email", "username", "password"))
+conn.commit()
+print("เพิ่มระเบียงข้อมูลสำเร็จ")
+conn.close() 

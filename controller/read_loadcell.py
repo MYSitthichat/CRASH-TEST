@@ -5,6 +5,9 @@ from PySide6.QtCore import QThread,Signal,QObject
 # register == D
 # AD1 = loadcell
 # D10 = loadcell_register
+# max = 4095 
+# loadcell = 0 - 100 kg
+
 
 class Readloadcell(QThread,QObject):
     connect_modbus_signal = Signal()

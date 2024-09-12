@@ -1,13 +1,15 @@
 from PySide6.QtCore import QObject ,Signal ,Slot
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox,QFileDialog
 from view.home_view import HomeView
 from controller.check_comport_controller import SerialPortChecker
 from controller.read_loadcell import Readloadcell
+from datetime import datetime
 
 
 class HomeController(QObject):
     log_out_button = Signal()
     modbus_consuccess = False
+    start_test = False
     def __init__(self):
         super(HomeController, self).__init__()
         self.home_obj = HomeView()
@@ -21,22 +23,26 @@ class HomeController(QObject):
         self.home_obj.disconnect_pushButton.clicked.connect(self.disconnect_button_pressed)
         self.home_obj.set_zero_pushButton.clicked.connect(self.set_zero_button_pressed)
         self.read_loadcell_controller.raw_data_loadcell.connect(self.show_loadcell_data)
-        
+        self.home_obj.start_pushButton.clicked.connect(self.start_button_pressed)
+        self.home_obj.stop_pushButton.clicked.connect(self.stop_button_pressed)
+        self.home_obj.save_pushButton.clicked.connect(self.save_button_pressed)
+        self.set_zero = 0
+
     @Slot()
     @Slot(str)
-    
-    def set_zero_button_pressed(self):
-        print("set zero button pressed")
-    
+
     def show_home_page(self):
         self.home_obj.show_main_frame()
     
     def hide_home_page(self):
         self.home_obj.hide_main_frame()
-        
+
     def log_out_pressed(self):
         self.modbus_consuccess = False
         if self.modbus_consuccess == True:
+            self.read_loadcell_controller.stop()
+        else:
+            self.read_loadcell_controller.start()
             self.read_loadcell_controller.stop()
         self.log_out_button.emit()
         
@@ -50,7 +56,6 @@ class HomeController(QObject):
             self.home_obj.comport_comboBox.setEnabled(True)
             for port in ports:
                 self.home_obj.comport_comboBox.addItem(port.device)
-                
 
     def connect_button_pressed(self):
         self.select_comport = self.home_obj.comport_comboBox.currentText()
@@ -70,7 +75,7 @@ class HomeController(QObject):
             msg_box.setText("Please select COM port")
             msg_box.setWindowTitle("NO COM PORT SELECTED")
             msg_box.exec()
-            
+
     def disconnect_button_pressed(self):
         self.home_obj.set_enable_comport_combobox()
         self.home_obj.set_enable_connect_button()
@@ -81,13 +86,12 @@ class HomeController(QObject):
         self.home_obj.set_disable_start_button()
         self.home_obj.set_disable_stop_button()
         self.home_obj.set_disable_save_button()
-        self.home_obj.set_disable_calibrate_weight_lineedit()
-        self.home_obj.set_disable_calibrate_button()
+        self.home_obj.set_disable_data_show_lineedit()
+        self.home_obj.clear_data_show_lineedit()
         if self.modbus_consuccess == True:
             self.read_loadcell_controller.stop()
             self.modbus_consuccess = False
-  
-                
+
     def connection_comport_success(self):
         if self.modbus_consuccess:
             self.home_obj.set_disable_comport_combobox()
@@ -98,24 +102,56 @@ class HomeController(QObject):
             self.home_obj.set_enable_start_button()
             self.home_obj.set_enable_stop_button()
             self.home_obj.set_enable_save_button()
-            self.home_obj.set_enable_calibrate_weight_lineedit()
-            self.home_obj.set_enable_calibrate_button()
+            self.home_obj.set_enable_data_show_lineedit()
         else:
             msg_box = QMessageBox()
             msg_box.setIcon(QMessageBox.Critical)
             msg_box.setText("COM PORT NOT CONNECTED")
             msg_box.setWindowTitle("COM PORT ERROR")
             msg_box.exec()
-    
+
     def modbus_consuc(self):
         self.modbus_consuccess = True
         self.show_loadcell_data()
-        
+
     def show_loadcell_data(self):
         try:
-            raw_weight = self.read_loadcell_controller.load_cell_value
-            self.home_obj.weight_lineEdit.setText(str(raw_weight))
-            
+            self.raw_weight = self.read_loadcell_controller.load_cell_value
+            self.kg_value = (((self.raw_weight / 4095) * 100) / 1.5) - self.set_zero
+            self.kg_value = round(self.kg_value,1)
+            self.home_obj.weight_lineEdit.setText(str(self.kg_value))
+            if self.start_test == True:
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                self.home_obj.data_show_textEdit.append(f"{"date time "}:{timestamp}:{"  VALUE == "}:{self.kg_value}")
+                # self.home_obj.data_show_textEdit.append(str(self.kg_value))
         except AttributeError:
             pass
-        
+
+    def set_zero_button_pressed(self):
+        self.set_zero = self.raw_weight / 4095 * 100 / 1.5
+
+    def start_button_pressed(self):
+        self.start_test = True
+
+    def stop_button_pressed(self):
+        self.start_test = False
+
+    def save_button_pressed(self):
+        file_path, _ = QFileDialog.getSaveFileName(self.home_obj, "Save File", "", "Text Files (*.txt);;All Files (*)")
+        if file_path:
+            try:
+                with open(file_path, 'w') as file:
+                    file.write(self.home_obj.data_show_textEdit.toPlainText())
+                    msg_box = QMessageBox()
+                    msg_box.setIcon(QMessageBox.Information)
+                    msg_box.setText("File saved successfully")
+                    msg_box.setWindowTitle("Success")
+                    msg_box.exec()
+                    self.home_obj.data_show_textEdit.clear()
+            except Exception as e:
+                msg_box = QMessageBox()
+                msg_box.setIcon(QMessageBox.Critical)
+                msg_box.setText(f"Failed to save file: {str(e)}")
+                msg_box.setWindowTitle("Error")
+                msg_box.exec()
+

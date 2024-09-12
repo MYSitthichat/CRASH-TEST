@@ -8,6 +8,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     crash_controller = CrashController()
     crash_controller.show_login()
-    # crash_controller.show_home()
     app.exec()
     

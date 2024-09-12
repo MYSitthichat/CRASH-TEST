@@ -22,7 +22,6 @@ class CrashController(QObject):
         self.register_controller.save_button.connect(self.save_register_event)
         self.home_controller.log_out_button.connect(self.log_out_success_event)
 
-
     @Slot()
     def loggin_success_event(self):
         self.username = self.login_controller.login_obj.user_lineEdit.text()
@@ -48,6 +47,7 @@ class CrashController(QObject):
         self.register_username = self.register_controller.register_obj.username_lineEdit.text()
         self.register_password = self.register_controller.register_obj.password_lineEdit.text()
         self.register_repassword = self.register_controller.register_obj.repassword_lineEdit.text()
+        self.check_username = self.databass_controller.check_user_by_username(self.register_username)
         if self.register_name != "" and self.register_lastname != "" and self.register_email != "" and self.register_username != "" and self.register_password != "" and self.register_repassword != "":
             if self.register_password != self.register_repassword:
                 msg_box = QMessageBox()
@@ -55,7 +55,8 @@ class CrashController(QObject):
                 msg_box.setText("Password is not same")
                 msg_box.setWindowTitle("Register Error")
                 msg_box.exec()
-            if self.register_username != self.databass_controller.check_user_by_username(self.register_username):
+            elif self.check_username != None:
+                print(self.check_username)
                 msg_box = QMessageBox()
                 msg_box.setIcon(QMessageBox.Warning)
                 msg_box.setText("Username นี้มีคนใช้แล้ว")

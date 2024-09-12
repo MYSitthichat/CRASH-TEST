@@ -12,8 +12,8 @@ class HomeView(QMainWindow, Ui_MainWindow):
         self.set_disable_start_button()
         self.set_disable_stop_button()
         self.set_disable_save_button()
-        self.set_disable_calibrate_weight_lineedit()
-        self.set_disable_calibrate_button()
+        self.set_disable_data_show_lineedit()
+        self.clear_data_show_lineedit()
 
     def show_main_frame(self):
         self.show()
@@ -88,19 +88,13 @@ class HomeView(QMainWindow, Ui_MainWindow):
     def clear_weight_lineedit(self):
         self.weight_lineEdit.clear()
     
-    def set_enable_calibrate_weight_lineedit(self):
-        self.calibrate_weight_lineEdit.setEnabled(True)
-        self.calibrate_weight_lineEdit.setStyleSheet("background:rgb(255, 255, 255)")
-    
-    def set_disable_calibrate_weight_lineedit(self):
-        self.calibrate_weight_lineEdit.setEnabled(False)
-        self.calibrate_weight_lineEdit.setStyleSheet("background-color: gray; color: white;")  
-    
-    def set_enable_calibrate_button(self):
-        self.calibrate_pushButton.setEnabled(True)
-        self.calibrate_pushButton.setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ff00ff, stop: 1 #ffffff);")
+    def set_enable_data_show_lineedit(self):
+        self.data_show_textEdit.setEnabled(True)
+        self.data_show_textEdit.setStyleSheet("background: white")
         
-    def set_disable_calibrate_button(self):
-        self.calibrate_pushButton.setEnabled(False)
-        self.calibrate_pushButton.setStyleSheet("background-color: gray; color: white;") 
-    
+    def set_disable_data_show_lineedit(self):
+        self.data_show_textEdit.setEnabled(False)
+        self.data_show_textEdit.setStyleSheet("background-color: gray; color: white;")
+        
+    def clear_data_show_lineedit(self):
+        self.data_show_textEdit.clear() 

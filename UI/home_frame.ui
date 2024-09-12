@@ -36,28 +36,6 @@
    <string notr="true">background:rgb(255, 238, 172)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="data_output_frame">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>89</y>
-      <width>1120</width>
-      <height>781</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:rgb(255, 255, 255)</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Plain</enum>
-    </property>
-    <property name="lineWidth">
-     <number>3</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="comport_label">
     <property name="geometry">
      <rect>
@@ -130,7 +108,7 @@
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>3</y>
+      <y>20</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -149,8 +127,8 @@
    <widget class="QLineEdit" name="weight_lineEdit">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>40</y>
+      <x>930</x>
+      <y>20</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -172,8 +150,8 @@
    <widget class="QLabel" name="weight_unit_label">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>40</y>
+      <x>1080</x>
+      <y>20</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -193,7 +171,7 @@
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>120</y>
+      <y>20</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -222,7 +200,7 @@
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>210</y>
+      <y>110</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -245,7 +223,7 @@
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>300</y>
+      <y>200</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -289,7 +267,7 @@
     <property name="geometry">
      <rect>
       <x>1150</x>
-      <y>390</y>
+      <y>290</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -354,96 +332,33 @@
      <string>DISCONNECT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="calibrate_weight_label">
+   <widget class="QTextEdit" name="data_show_textEdit">
     <property name="geometry">
      <rect>
-      <x>940</x>
-      <y>3</y>
-      <width>161</width>
-      <height>41</height>
+      <x>10</x>
+      <y>89</y>
+      <width>1120</width>
+      <height>780</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>TH Niramit AS</family>
-      <pointsize>22</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>น้ำหนักCalibrate</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="calibrate_weight_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>40</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>TH Niramit AS</family>
-      <pointsize>24</pointsize>
+      <pointsize>30</pointsize>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">background:rgb(255, 255, 255)</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
+    <property name="frameShape">
+     <enum>QFrame::Shape::Box</enum>
     </property>
-   </widget>
-   <widget class="QLabel" name="calibrate_weight_unit_label">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>40</y>
-      <width>41</width>
-      <height>41</height>
-     </rect>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Plain</enum>
     </property>
-    <property name="font">
-     <font>
-      <family>TH Niramit AS</family>
-      <pointsize>22</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>KG</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="calibrate_pushButton">
-    <property name="geometry">
-     <rect>
-      <x>1150</x>
-      <y>30</y>
-      <width>161</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>TH Niramit AS</family>
-      <pointsize>24</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ff667a, stop: 1 #ffffff);</string>
-    </property>
-    <property name="text">
-     <string>CALIBRATE</string>
-    </property>
-    <property name="autoRepeatDelay">
-     <number>300</number>
-    </property>
-    <property name="autoRepeatInterval">
-     <number>100</number>
+    <property name="lineWidth">
+     <number>4</number>
     </property>
    </widget>
   </widget>
